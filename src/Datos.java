@@ -3,36 +3,28 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Ventana2_Main extends JDialog {
+public class Datos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Ventana2_Main dialog = new Ventana2_Main();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	private JTextField textFieldNombre;
+	private JTextField textFieldZona;
+	private JTextField textFieldAltura;
 	/**
 	 * Create the dialog.
 	 */
-	public Ventana2_Main() {
+	public Datos(JFrame parent, String titulua,boolean modal) {
+		
+		super(parent,titulua,modal);
+		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,20 +37,20 @@ public class Ventana2_Main extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		
-		textField = new JTextField();
-		textField.setBounds(140, 82, 149, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(140, 82, 149, 20);
+		contentPanel.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(140, 113, 149, 20);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);
+		textFieldZona = new JTextField();
+		textFieldZona.setBounds(140, 113, 149, 20);
+		contentPanel.add(textFieldZona);
+		textFieldZona.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(140, 145, 149, 20);
-		contentPanel.add(textField_2);
-		textField_2.setColumns(10);
+		textFieldAltura = new JTextField();
+		textFieldAltura.setBounds(140, 145, 149, 20);
+		contentPanel.add(textFieldAltura);
+		textFieldAltura.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre :");
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -74,26 +66,37 @@ public class Ventana2_Main extends JDialog {
 		lblAltura.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblAltura.setBounds(39, 148, 64, 14);
 		contentPanel.add(lblAltura);
-		
-		JButton btnInsertarArbol = new JButton("Insertar arbol");
-		btnInsertarArbol.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnInsertarArbol.setBounds(140, 194, 151, 23);
-		contentPanel.add(btnInsertarArbol);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Guardar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Arbol arbol = new Arbol(textFieldNombre.getText(),textFieldZona.getText(),Double.parseDouble(textFieldAltura.getText()));
+					
+						
+						((Main) getParent()).aniadirArbol(arbol);
+						dispose();
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
+	
 }

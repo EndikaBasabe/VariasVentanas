@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 public class Main extends JFrame {
 
 	private JPanel contentPane;
-
+	private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -45,13 +45,14 @@ public class Main extends JFrame {
 		JButton btnNewButton = new JButton("Abrir Formulario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				abrirFormularioArbol();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBounds(102, 201, 235, 23);
 		contentPane.add(btnNewButton);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(143, 96, 142, 20);
 		contentPane.add(comboBox);
 		
@@ -64,4 +65,23 @@ public class Main extends JFrame {
 		label.setBounds(102, 205, 46, 14);
 		contentPane.add(label);
 	}
+
+	
+
+	protected void abrirFormularioArbol() {
+		// TODO Apéndice de método generado automáticamente
+		Datos hija = new Datos(this,"Formulario",true);
+		hija.setVisible(true);
+	}
+
+	public void aniadirArbol(Arbol arbol) {
+		// TODO Apéndice de método generado automáticamente
+		this.comboBox.addItem(arbol.getNombre() + " " + arbol.getZona() + " " + arbol.getAltura());
+	}
+	
+	
+	
+
+		
+	
 }
