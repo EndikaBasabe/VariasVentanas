@@ -49,7 +49,7 @@ public class Main extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(102, 201, 235, 23);
+		btnNewButton.setBounds(91, 162, 235, 23);
 		contentPane.add(btnNewButton);
 		
 		comboBox = new JComboBox();
@@ -64,6 +64,16 @@ public class Main extends JFrame {
 		JLabel label = new JLabel("");
 		label.setBounds(102, 205, 46, 14);
 		contentPane.add(label);
+		
+		JButton buttonEliminarArbol = new JButton("Eliminar arbol");
+		buttonEliminarArbol.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				eliminarArbol();
+			}
+		});
+		buttonEliminarArbol.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buttonEliminarArbol.setBounds(91, 205, 235, 23);
+		contentPane.add(buttonEliminarArbol);
 	}
 
 	
@@ -79,9 +89,8 @@ public class Main extends JFrame {
 		this.comboBox.addItem(arbol.getNombre() + " " + arbol.getZona() + " " + arbol.getAltura());
 	}
 	
-	
-	
-
-		
-	
+	public void eliminarArbol(){
+		 int index = this.comboBox.getSelectedIndex();
+		this.comboBox.removeItemAt(index);
+	}
 }
